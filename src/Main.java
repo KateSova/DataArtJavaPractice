@@ -2,24 +2,34 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Test collections add");
+        System.out.println(" >Test collections add");
         testCollectionAdd(new ArrayList<>());
         testCollectionAdd(new LinkedList<>());
         testCollectionAdd(new HashSet<>());
         testCollectionAdd(new TreeSet<>());
+        System.out.println("\nArrayList быстрее LinkedList, т.к. имеет свою вместимость и не требует перевыделения памяти постоянно");
+        System.out.println("Сеты формируются долгое время из-за динамической перестройки структуры");
+        System.out.println("======================================================================");
 
-        System.out.println("\nTest lists add to begin");
+        System.out.println("\n\n >Test lists add to begin");
         testListAddToBegin(new ArrayList<>());
         testListAddToBegin(new LinkedList<>());
+        System.out.println("\nArrayList медленнее, т.к. требует переноса всех ранее добавленных значений вперёд");
+        System.out.println("======================================================================");
 
-        System.out.println("\nTest set to contains");
+        System.out.println("\n\n >Test set to contains");
         testSetToContains(new HashSet<>());
         testSetToContains(new TreeSet<>());
+        System.out.println("\nTreeSet медленнее т.к. имеет логарифмическую сложность поиска, а у HashSet сложнасть примерно равна константе, при редких коллизиях");
+        System.out.println("======================================================================");
 
-        System.out.println("\nTest collections to contains");
+        System.out.println("\n\n >Test collections to contains");
         testCollectionsToContains(new HashSet<>());
         testCollectionsToContains(new ArrayList<>());
         testCollectionsToContains(new LinkedList<>());
+        System.out.println("\nУ List линейная сложность поиска, у HashSet сложность константная.");
+        System.out.println("ArrayList быстрее LinkedList, т.к. у массива элементы лежат рядом в памяти");
+        System.out.println("======================================================================");
     }
 
     static void testCollectionAdd(Collection<Float> collection) {
@@ -61,7 +71,7 @@ public class Main {
     }
 
     static void testCollectionsToContains(Collection<Integer> collection) {
-        int limit = 10_000;
+        int limit = 30_000;
         fillCollection(collection, limit);
         long start = System.currentTimeMillis();
         for (int i = 0; i < limit; i++) {
